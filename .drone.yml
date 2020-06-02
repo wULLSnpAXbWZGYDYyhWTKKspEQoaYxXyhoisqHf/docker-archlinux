@@ -1,0 +1,88 @@
+---
+kind: pipeline
+name: dockerhub-build-trigger
+
+platform:
+  arch: amd64
+
+steps:
+- name: call webhook
+  pull: always
+  image: curlimages/curl:latest
+  environment:
+    ENDPOINT:
+      from_secret: dockerhub_endpoint
+  commands:
+  - curl -s -X POST $ENDPOINT
+
+
+---
+kind: pipeline
+name: notifications
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+    - tag
+  status:
+    - success
+    - failure
+
+depends_on:
+  - dockerhub-build-trigger
+
+steps:
+  - name: discord
+    pull: if-not-exists
+    image: appleboy/drone-discord:latest
+    settings:
+      message: "{{#success build.status}} ✅ [Build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n```{{commit.message}}``` {{else}} ❌ [Build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n```{{commit.message}}``` {{/success}}\n"
+      webhook_id:
+        from_secret: discord_webhook_id
+      webhook_token:
+        from_secret: discord_webhook_token
+
+---
+kind: pipeline
+name: notifications-cronbuild
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+trigger:
+  branch:
+    - master
+  event:
+    - cron
+  cron:
+    - hourly-build
+  status:
+    - success
+    - failure
+
+depends_on:
+  - dockerhub-build-trigger
+
+steps:
+  - name: discord
+    pull: always
+    image: appleboy/drone-discord:latest
+    settings:
+      message: "{{#success build.status}} ✅ [Hourly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{else}} ❌ [Hourly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{/success}}\n"
+      webhook_id:
+        from_secret: discord_webhook_hourly_id
+      webhook_token:
+        from_secret: discord_webhook_hourly_token
