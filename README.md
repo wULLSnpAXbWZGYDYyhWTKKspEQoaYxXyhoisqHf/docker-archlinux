@@ -35,6 +35,6 @@ docker run -it -v yourlocalpath:containerpath immawanderer/archlinux:latest
 ```bash
 mkdir -pv mynewfolder
 cd ./mynewfolder
-wget https://raw.githubusercontent.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux/master/Dockerfile
+wget https://git.dotya.ml/wanderer/docker-archlinux/raw/branch/master/Dockerfile
 docker build --pull - < Dockerfile
 ```
