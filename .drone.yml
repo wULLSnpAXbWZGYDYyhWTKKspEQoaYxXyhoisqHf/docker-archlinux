@@ -38,8 +38,9 @@ trigger:
   status:
     - success
     - failure
-  exclude:
-    event: cron
+  event:
+    exclude:
+    - cron
 
 depends_on:
   - dockerhub-build-trigger
