@@ -5,6 +5,10 @@ name: dockerhub-build-trigger
 platform:
   arch: amd64
 
+trigger:
+  exclude:
+    event: pull_request
+
 steps:
 - name: call webhook
   pull: always
@@ -28,11 +32,9 @@ clone:
   disable: true
 
 trigger:
-  branch:
-    - master
-  event:
-    - push
-    - tag
+  ref:
+  - refs/heads/master
+  - "refs/tags/**"
   status:
     - success
     - failure
