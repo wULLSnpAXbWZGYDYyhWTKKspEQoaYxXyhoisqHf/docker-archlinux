@@ -6,7 +6,7 @@ ARG VCS_REF
 LABEL description="Hourly updated archlinux base image"
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-url="https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux.git" \
+      org.label-schema.vcs-url="https://git.dotya.ml/wanderer/docker-archlinux.git" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.license=GPL-3.0
 
