@@ -19,6 +19,25 @@ steps:
   commands:
   - curl -s -X POST $ENDPOINT
 
+---
+kind: pipeline
+type: docker
+name: kaniko-build
+
+platform:
+  os: linux
+  arch: amd64
+
+depends_on:
+- dockerhub-build-trigger
+
+steps:
+- name: build
+  pull: always
+  image: banzaicloud/drone-kaniko
+  settings:
+    dockerfile: Dockerfile
+    context: .
 
 ---
 kind: pipeline
@@ -43,7 +62,7 @@ trigger:
     - cron
 
 depends_on:
-  - dockerhub-build-trigger
+- kaniko-build
 
 steps:
   - name: discord
@@ -79,7 +98,7 @@ trigger:
     - failure
 
 depends_on:
-  - dockerhub-build-trigger
+  - kaniko-build
 
 steps:
   - name: discord
