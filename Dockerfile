@@ -18,9 +18,7 @@ RUN curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
     bsdtar -C / -xvf "$patched_glibc"
 RUN pacman --version
 
-WORKDIR /tmp/
 RUN pacman -Syu --ignore glibc --noconfirm --needed
 RUN pacman --noconfirm -Rn $(pacman -Qdtq) || true
 RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     rm -rv /tmp/* || true
-WORKDIR /
