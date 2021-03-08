@@ -7,6 +7,11 @@
 
 This repository provides the Dockerfile to create an updated Arch Linux base image.
 
+## :warning: :construction: DockerHub issue :construction: :warning:
+unless you're running Arch as your host OS, please make sure you read through the following issue write-up \
+⇒ https://git.dotya.ml/wanderer/docker-archlinux/issues/1 \
+:warning: :construction: :construction: :construction: :warning:
+
 The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
 push mirror lives in [this GitHub repo](https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux)  
