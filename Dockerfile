@@ -20,5 +20,5 @@ RUN pacman --version
 
 RUN pacman -Syu --ignore glibc --noconfirm --needed
 RUN pacman --noconfirm -Rn $(pacman -Qdtq) || true
-RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
+RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/* \
     rm -rv /tmp/* || true
