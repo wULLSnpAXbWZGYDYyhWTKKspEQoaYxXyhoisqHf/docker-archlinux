@@ -1,3 +1,8 @@
+# syntax=docker/dockerfile:1.2
+# refs:
+#   https://docs.docker.com/develop/develop-images/build_enhancements/#overriding-default-frontends
+#   https://pythonspeed.com/articles/docker-buildkit/
+
 FROM archlinux:latest
 
 ARG BUILD_DATE
