@@ -17,6 +17,26 @@ steps:
 
 ---
 kind: pipeline
+type: docker
+name: docker-build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  image: plugins/docker
+  settings:
+    repo: immawanderer/archlinux
+    tags: testing
+    cache_from:
+      - "immawanderer/archlinux:latest"
+      - "immawanderer/archlinux:testing"
+    dry_run: true
+
+---
+kind: pipeline
 name: notifications
 
 platform:
@@ -39,6 +59,7 @@ trigger:
 
 depends_on:
 - kaniko-build
+- docker-build
 
 steps:
   - name: discord
