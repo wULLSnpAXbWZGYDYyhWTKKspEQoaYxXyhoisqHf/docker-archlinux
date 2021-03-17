@@ -26,7 +26,7 @@ platform:
 
 steps:
 - name: build
-  image: plugins/docker
+  image: immawanderer/drone-docker:linux-amd64
   settings:
     repo: immawanderer/archlinux
     tags: testing
