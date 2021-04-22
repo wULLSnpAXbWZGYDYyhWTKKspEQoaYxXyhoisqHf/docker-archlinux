@@ -26,7 +26,7 @@ That's just it. This makes it possible to just grab the image and install whatev
 * Arch Linux image with freshly updated package base to build upon
 
 ## Running the image
-* edit the `yourlocalpath` and `containerpath` variabled or remove them entirely (along with `-v`) if you have *nothing to mount*
+* edit the `yourlocalpath` and `containerpath` variables or remove them entirely (along with `-v`) if you have *nothing to mount*
 
 ```bash
 docker run -it -v yourlocalpath:containerpath immawanderer/archlinux:latest

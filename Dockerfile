@@ -21,6 +21,5 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN pacman --version
 
 RUN pacman -Syu --noconfirm --needed
-RUN pacman --noconfirm -Rn $(pacman -Qdtq) || true
-RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/* \
-    rm -rv /tmp/* || true
+RUN pacman --noconfirm -Rn "$(pacman -Qdtq)" || true
+RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/*
