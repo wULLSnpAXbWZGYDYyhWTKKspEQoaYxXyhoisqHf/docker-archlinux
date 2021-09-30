@@ -3,7 +3,7 @@
 #   https://docs.docker.com/develop/develop-images/build_enhancements/#overriding-default-frontends
 #   https://pythonspeed.com/articles/docker-buildkit/
 
-FROM archlinux:latest
+FROM archlinux:base-devel
 
 ARG BUILD_DATE
 ARG VCS_REF
