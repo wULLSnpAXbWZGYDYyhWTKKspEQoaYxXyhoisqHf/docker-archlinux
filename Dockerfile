@@ -18,8 +18,9 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 # if you need the WORKAROUND for glibc 2.33 and old Docker
 # have a look at https://git.dotya.ml/wanderer/docker-archlinux/commit/bd4c5abe4dca475965548cb8332ef9b9d2a4953c
 
-RUN pacman --version
-
-RUN pacman -Syu --noconfirm --needed
-RUN pacman --noconfirm -Rn "$(pacman -Qdtq)" || true
-RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/*
+RUN pacman --version && \
+	\
+	\
+	pacman -Syu --noconfirm --needed && \
+	pacman --noconfirm -Rn "$(pacman -Qdtq)" || true && \
+	pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/*
