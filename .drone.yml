@@ -137,3 +137,9 @@ steps:
         from_secret: discord_webhook_hourly_id
       webhook_token:
         from_secret: discord_webhook_hourly_token
+
+---
+kind: signature
+hmac: 8cd78f803f03fdb5392c25a7402df45a376edbb327ac12952820a45406ee2eb3
+
+...
