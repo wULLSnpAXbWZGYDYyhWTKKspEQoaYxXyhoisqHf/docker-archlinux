@@ -11,7 +11,7 @@ kanikocontext = .
 kanikoargs = -f=$(dfile) -c=$(kanikocontext) --use-new-run --snapshotMode=redo --build-arg BUILD_DATE=$(build_date) --build-arg VCS_REF=$(vcs_ref) --no-push
 vcs_ref = $$(git rev-parse --short HEAD)
 build_date= $$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-hadolintimg = hadolint/hadolint
+hadolintimg = docker.io/hadolint/hadolint
 hadolinttag = v2.12.0-alpine
 hadolintargs = run --rm -i -v $$PWD:/src:z --workdir=/src
 .PHONY: hadolint build kaniko clean test prune
