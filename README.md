@@ -6,12 +6,7 @@
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/immawanderer/archlinux/linux-amd64)](https://hub.docker.com/r/immawanderer/archlinux/tags/?page=1&ordering=last_updated&name=linux-amd64)
 [![Docker pulls](https://img.shields.io/docker/pulls/immawanderer/archlinux)](https://hub.docker.com/r/immawanderer/archlinux/)
 
-This repository provides the Dockerfile to create an updated Arch Linux base image.
-
-## :warning: :construction: DockerHub issue :construction: :warning:
-unless you're running Arch as your host OS, please make sure you read through the following issue write-up \
-⇒ https://git.dotya.ml/wanderer/docker-archlinux/issues/1 \
-:warning: :construction: :construction: :construction: :warning:
+This repository provides a Dockerfile to create an *updated* Arch Linux base(-devel) image.
 
 The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
