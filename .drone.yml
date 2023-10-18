@@ -10,7 +10,7 @@ platform:
 steps:
 - name: hadolint
   pull: always
-  image: hadolint/hadolint:v2.9.3-alpine
+  image: hadolint/hadolint:v2.12.0-alpine
   commands:
   - hadolint --version
   - hadolint Dockerfile
@@ -140,6 +140,6 @@ steps:
 
 ---
 kind: signature
-hmac: 8cd78f803f03fdb5392c25a7402df45a376edbb327ac12952820a45406ee2eb3
+hmac: ddafa86803bc196966b1b7db150d5d7faec27cc157b87e689f18fb153d6aea9c
 
 ...
