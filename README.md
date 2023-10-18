@@ -8,7 +8,7 @@
 
 This repository provides a Dockerfile to create an *updated* Arch Linux base(-devel) image.
 
-The image is rebuilt approximately every hour to ensure it always has the latest packages.
+The image is rebuilt nightly to ensure it always has the latest packages.
 
 push mirror lives in [this GitHub repo](https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux)  
 development happens on [this Gitea instance](https://git.dotya.ml/wanderer/docker-archlinux)

@@ -119,7 +119,7 @@ trigger:
   event:
     - cron
   cron:
-    - hourly-build
+    - nightly-build
   status:
     - success
     - failure
@@ -132,7 +132,7 @@ steps:
     pull: always
     image: appleboy/drone-discord:latest
     settings:
-      message: "{{#success build.status}} ✅ [Hourly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{else}} ❌ [Hourly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{/success}}\n"
+      message: "{{#success build.status}} ✅ [Scheduled build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{else}} ❌ [Scheduled build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{/success}}\n"
       webhook_id:
         from_secret: discord_webhook_hourly_id
       webhook_token:
@@ -140,6 +140,6 @@ steps:
 
 ---
 kind: signature
-hmac: ddafa86803bc196966b1b7db150d5d7faec27cc157b87e689f18fb153d6aea9c
+hmac: 79f7aa371de5a00417aad26e6b613a94113f0f5d23a57c3a68efa46fce8bf747
 
 ...
